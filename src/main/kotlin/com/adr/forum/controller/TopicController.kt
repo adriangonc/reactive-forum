@@ -1,5 +1,6 @@
 package com.adr.forum.controller
 
+import com.adr.forum.dto.NewTopicDto
 import com.adr.forum.model.Course
 import com.adr.forum.model.Topic
 import com.adr.forum.model.User
@@ -25,7 +26,7 @@ class TopicController(private val service: TopicService) {
     }
 
     @PostMapping
-    fun createTopic(@RequestBody topic: Topic): Topic {
+    fun createTopic(@RequestBody topic: NewTopicDto): NewTopicDto {
         service.createTopic(topic)
         return topic
     }

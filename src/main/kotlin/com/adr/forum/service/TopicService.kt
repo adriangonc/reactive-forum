@@ -1,18 +1,22 @@
 package com.adr.forum.service
 
-import com.adr.forum.model.Course
+import com.adr.forum.dto.NewTopicDto
+import com.adr.forum.model.Answeres
+import com.adr.forum.model.StatusTopic
 import com.adr.forum.model.Topic
-import com.adr.forum.model.User
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toFlux
 import reactor.kotlin.core.publisher.toMono
-import java.util.*
 import kotlin.collections.ArrayList
 
 @Service
-class TopicService(private var topics: List<Topic> = ArrayList()) {
+class TopicService(
+    private var topics: List<Topic> = ArrayList(),
+    private var courseService: CourseService,
+    private var userService: UserService
+) {
 
 
     fun listTopics(): Flux<Topic> {
@@ -25,8 +29,21 @@ class TopicService(private var topics: List<Topic> = ArrayList()) {
         }.findFirst().get().toMono()
     }
 
-    fun createTopic(topic: Topic) {
-        topics.plus(topic)
+    fun createTopic(topicDto: NewTopicDto) {
+
+        topics = topics.plus(
+            Topic(
+                id = topics.size.toLong() + 1,
+                title = topicDto.title,
+                mensage = topicDto.message,
+                author = userService.findById(topicDto.idAuthor),
+                course = courseService.findByIdCourse(topicDto.idCourse),
+                status = StatusTopic.NOT_ANSWERED,
+                answeres = ArrayList()
+            )
+        )
+
+
     }
 
 }
