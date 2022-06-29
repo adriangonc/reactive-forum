@@ -2,6 +2,8 @@ package com.adr.forum.service
 
 import com.adr.forum.dto.NewTopicForm
 import com.adr.forum.dto.TopicView
+import com.adr.forum.mapper.TopicFormMapper
+import com.adr.forum.mapper.TopicViewMapper
 import com.adr.forum.model.StatusTopic
 import com.adr.forum.model.Topic
 import org.springframework.stereotype.Service
@@ -14,21 +16,14 @@ import kotlin.collections.ArrayList
 @Service
 class TopicService(
     private var topics: List<Topic> = ArrayList(),
-    private var courseService: CourseService,
-    private var userService: UserService
+    private val topicViewMapper: TopicViewMapper,
+    private val topicFormMapper: TopicFormMapper
 ) {
-
 
     fun listTopics(): Flux<TopicView> {
         return topics.stream().map { t ->
             t.id?.let {
-                TopicView(
-                    id = it,
-                    title = t.title,
-                    message = t.message,
-                    creationDate = t.creationDate,
-                    status = t.status
-                )
+                topicViewMapper.map(t)
             }
         }.toFlux()
     }
@@ -38,31 +33,14 @@ class TopicService(
             t.id == id
         }.findFirst().get()
         return topic.id?.let {
-            TopicView(
-                id = it,
-                title = topic.title,
-                message = topic.message,
-                creationDate = topic.creationDate,
-                status = topic.status
-            ).toMono()
+            topicViewMapper.map(topic).toMono()
         }
     }
 
-    fun createTopic(topicDto: NewTopicForm) {
-
-        topics = topics.plus(
-            Topic(
-                id = topics.size.toLong() + 1,
-                title = topicDto.title,
-                message = topicDto.message,
-                author = userService.findById(topicDto.idAuthor),
-                course = courseService.findByIdCourse(topicDto.idCourse),
-                status = StatusTopic.NOT_ANSWERED,
-                answeres = ArrayList()
-            )
-        )
-
-
+    fun createTopic(form: NewTopicForm) {
+        val topic = topicFormMapper.map(form)
+        topic.id = topics.size.toLong() + 1
+        topics = topics.plus(topic)
     }
 
 }
