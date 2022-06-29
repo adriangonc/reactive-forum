@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 class Topic (
     val id: Long? = null,
     val title: String,
-    val mensage: String,
+    val message: String,
     val creationDate: LocalDateTime = LocalDateTime.now(),
     val course: Course,
     val author: User,

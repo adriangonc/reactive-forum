@@ -8,7 +8,7 @@ class Util {
     fun createTopic() = Topic(
         id = 1L,
         title = "Duvida list kotlin",
-        mensage = "Array list kotlin",
+        message = "Array list kotlin",
         course = Course(
             id = 1,
             name = "Kotlin + spring",

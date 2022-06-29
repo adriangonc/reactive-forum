@@ -1,6 +1,6 @@
 package com.adr.forum.dto
 
-data class NewTopicDto(
+data class NewTopicForm(
     val title: String,
     val message: String,
     val idCourse: Long,
