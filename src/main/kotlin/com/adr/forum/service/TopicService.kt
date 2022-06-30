@@ -58,4 +58,9 @@ class TopicService(
         }
     }
 
+    fun deleteTopic(id: Long) {
+        var topicToDelete = findTopicById(id)
+        topics = topics.minus(topicToDelete)
+    }
+
 }

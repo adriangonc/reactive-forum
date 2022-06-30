@@ -35,4 +35,9 @@ class TopicController(private val service: TopicService) {
         return topic
     }
 
+    @DeleteMapping("/{id}")
+    fun deleteTopic(@PathVariable id: Long){
+        service.deleteTopic(id)
+    }
+
 }
