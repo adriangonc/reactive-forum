@@ -10,5 +10,5 @@ data class NewTopicForm(
     @field:NotEmpty @field:Size(min = 10, max = 200) val title: String,
     @field:NotEmpty @field:Size(min = 10, max = 4000) val message: String,
     @field:NotNull val idCourse: Long,
-    @field:NotNull val idAuthor: Long
+    @field:NotNull var idAuthor: Long
 )
