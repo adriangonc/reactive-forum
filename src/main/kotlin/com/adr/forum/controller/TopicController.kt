@@ -12,6 +12,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import javax.validation.Valid
 
+
 @RestController
 @RequestMapping("/topics")
 class TopicController(private val service: TopicService) {
