@@ -7,6 +7,7 @@ import com.adr.forum.exception.NotFoundException
 import com.adr.forum.mapper.TopicFormMapper
 import com.adr.forum.mapper.TopicViewMapper
 import com.adr.forum.model.Topic
+import com.adr.forum.repository.TopicRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -16,14 +17,14 @@ import kotlin.collections.ArrayList
 
 @Service
 class TopicService(
-    private var topics: List<Topic> = ArrayList(),
+    private val repository: TopicRepository,
     private val topicViewMapper: TopicViewMapper,
     private val topicFormMapper: TopicFormMapper,
     private val notFoundMsg: String = "Topico nao encontrado!"
 ) {
 
     fun listTopics(): Flux<TopicView> {
-        return topics.stream().map { t ->
+        return repository.findAll().stream().map { t ->
             t.id?.let {
                 topicViewMapper.map(t)
             }
@@ -37,14 +38,12 @@ class TopicService(
         }
     }
 
-    private fun findTopicById(id: Long) = topics.stream().filter { t ->
-        t.id == id
-    }.findFirst().orElseThrow {NotFoundException(notFoundMsg)}
+    private fun findTopicById(id: Long) = repository.findById(id)
+        .orElseThrow {NotFoundException(notFoundMsg)}
 
     fun createTopic(form: NewTopicForm): TopicView {
         val topic = topicFormMapper.map(form)
-        topic.id = topics.size.toLong() + 1
-        topics = topics.plus(topic)
+        repository.save(topic)
         return topicViewMapper.map(topic)
     }
 
@@ -52,10 +51,10 @@ class TopicService(
         var topicToUpdate = findTopicById(topic.id)
 
         try {
-            topics = topics.minus(topicToUpdate)
+
             topicToUpdate.message = topic.message
             topicToUpdate.title = topic.title
-            topics = topics.plus(topicToUpdate)
+            repository.save(topicToUpdate)
             return topicViewMapper.map(topicToUpdate)
         } catch (e: Exception) {
             println(e)
@@ -64,8 +63,7 @@ class TopicService(
     }
 
     fun deleteTopic(id: Long) {
-        var topicToDelete = findTopicById(id)
-        topics = topics.minus(topicToDelete)
+        repository.deleteById(id)
     }
 
     fun createTopicsForTest(qtd: Long) {

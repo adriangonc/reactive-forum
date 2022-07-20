@@ -6,6 +6,7 @@ import com.adr.forum.dto.UpdateTopicForm
 import com.adr.forum.service.TopicService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 import reactor.core.publisher.Flux
@@ -28,6 +29,7 @@ class TopicController(private val service: TopicService) {
     }
 
     @PostMapping
+    @Transactional
     fun createTopic(
         @RequestBody @Valid topic: NewTopicForm,
         uriBuilder: UriComponentsBuilder
@@ -38,18 +40,21 @@ class TopicController(private val service: TopicService) {
     }
 
     @PutMapping
+    @Transactional
     fun updateTopic(@RequestBody @Valid topic: UpdateTopicForm): ResponseEntity<TopicView> {
         var topicView = service.updateTopic(topic)
         return ResponseEntity.ok(topicView)
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun deleteTopic(@PathVariable id: Long) {
         service.deleteTopic(id)
     }
 
     @PostMapping("/create-topics-for-test/{qtd}")
+    @Transactional
     fun createTopicsForTest(@PathVariable qtd: Long) {
         service.createTopicsForTest(qtd)
     }

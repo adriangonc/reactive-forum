@@ -4,6 +4,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
+@Table(name="TB_ANSWERES")
 data class Answeres (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
