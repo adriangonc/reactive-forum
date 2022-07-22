@@ -20,7 +20,7 @@ class TopicFormMapper(
             author = userService.findById(t.idAuthor),
             course = courseService.findByIdCourse(t.idCourse),
             status = StatusTopic.NOT_ANSWERED,
-            answeres = ArrayList()
+            answers = ArrayList()
         )
     }
 

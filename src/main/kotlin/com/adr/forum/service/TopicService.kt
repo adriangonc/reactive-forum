@@ -43,7 +43,7 @@ class TopicService(
 
     fun createTopic(form: NewTopicForm): TopicView {
         val topic = topicFormMapper.map(form)
-        repository.save(topic)
+        repository.saveAndFlush(topic)
         return topicViewMapper.map(topic)
     }
 
