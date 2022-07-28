@@ -23,8 +23,13 @@ class TopicService(
     private val notFoundMsg: String = "Topico nao encontrado!"
 ) {
 
-    fun listTopics(): Flux<TopicView> {
-        return repository.findAll().stream().map { t ->
+    fun listTopics(courseName: String?): Flux<TopicView> {
+        val topics = if (courseName == null){
+            repository.findAll()
+        } else {
+            repository.findByCourseName(courseName)
+        }
+        return topics.stream().map { t ->
             t.id?.let {
                 topicViewMapper.map(t)
             }

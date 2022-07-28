@@ -19,8 +19,8 @@ import javax.validation.Valid
 class TopicController(private val service: TopicService) {
 
     @GetMapping
-    fun listTopics(): Flux<TopicView> {
-        return service.listTopics()
+    fun listTopics(@RequestParam(required = false) courseName: String?): Flux<TopicView> {
+        return service.listTopics(courseName)
     }
 
     @GetMapping("/{id}")
