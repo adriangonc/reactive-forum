@@ -5,4 +5,7 @@ create table TB_COURSE(
     primary key(id)
 );
 
-insert into TB_COURSE values(1, 'Default Course', 'Programing')
+insert into TB_COURSE values(-1, 'Default Course', 'Programing');
+insert into TB_COURSE values(-2, 'C++', 'Programing');
+insert into TB_COURSE values(-3, 'Java', 'Programing');
+insert into TB_COURSE values(-4, 'Kotlin', 'Programing');
