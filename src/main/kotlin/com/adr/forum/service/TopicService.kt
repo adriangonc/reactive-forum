@@ -1,6 +1,7 @@
 package com.adr.forum.service
 
 import com.adr.forum.dto.NewTopicForm
+import com.adr.forum.dto.TopicByCategoryDto
 import com.adr.forum.dto.TopicView
 import com.adr.forum.dto.UpdateTopicForm
 import com.adr.forum.exception.NotFoundException
@@ -76,8 +77,12 @@ class TopicService(
         var topics: List<NewTopicForm> = ArrayList()
         for (i in 1..qtd){
             var newTopicForm = NewTopicForm("Title-${i}", "Mensage-${i}",
-                1L, 1L)
+                -1L, 1L)
             createTopic(newTopicForm)
         }
+    }
+
+    fun reportTopics(): List<TopicByCategoryDto> {
+        return repository.reportTopics()
     }
 }

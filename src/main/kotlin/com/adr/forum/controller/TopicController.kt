@@ -1,6 +1,7 @@
 package com.adr.forum.controller
 
 import com.adr.forum.dto.NewTopicForm
+import com.adr.forum.dto.TopicByCategoryDto
 import com.adr.forum.dto.TopicView
 import com.adr.forum.dto.UpdateTopicForm
 import com.adr.forum.service.TopicService
@@ -57,6 +58,11 @@ class TopicController(private val service: TopicService) {
     @Transactional
     fun createTopicsForTest(@PathVariable qtd: Long) {
         service.createTopicsForTest(qtd)
+    }
+
+    @GetMapping("/report")
+    fun report(): List<TopicByCategoryDto> {
+        return service.reportTopics()
     }
 
 }
