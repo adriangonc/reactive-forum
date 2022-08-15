@@ -21,7 +21,7 @@ class NotificationController(private val service: NotificationService) {
     }
 
     @GetMapping("/payment/{id}")
-    fun notificationByPaymentId(@PathVariable id: String): Notification? {
+    fun notificationByPaymentId(@PathVariable id: String): MutableList<Notification>? {
         return service.findByPaymentId(id)
     }
 }
