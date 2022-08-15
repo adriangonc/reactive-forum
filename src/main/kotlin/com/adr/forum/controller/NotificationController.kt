@@ -1,0 +1,27 @@
+package com.adr.forum.controller
+
+import com.adr.forum.model.Notification
+import com.adr.forum.service.NotificationService
+import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.bind.annotation.*
+
+@RestController
+@RequestMapping("/notification")
+class NotificationController(private val service: NotificationService) {
+
+    @PostMapping
+    @Transactional
+    fun receiveNotification(@RequestBody payload: Map<String, Object>){
+        service.save(payload)
+    }
+
+    @GetMapping
+    fun notifications(): MutableList<Notification> {
+        return service.findyAll()
+    }
+
+    @GetMapping("/payment/{id}")
+    fun notificationByPaymentId(@PathVariable id: String): Notification? {
+        return service.findByPaymentId(id)
+    }
+}
