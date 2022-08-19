@@ -32,6 +32,10 @@ dependencies {
 	implementation("com.h2database:h2")
 	implementation("org.flywaydb:flyway-core")
 
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation("org.springframework.boot:spring-boot-starter-security:2.7.3")
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")

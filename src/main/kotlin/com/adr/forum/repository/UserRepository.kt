@@ -4,4 +4,5 @@ import com.adr.forum.model.User
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserRepository: JpaRepository<User, Long> {
+    abstract fun findByEmail(username: String?): User?
 }

@@ -15,7 +15,7 @@ class NotificationController(private val service: NotificationService) {
         service.save(payload)
     }
 
-    @GetMapping
+    @GetMapping("/list")
     fun notifications(): MutableList<Notification> {
         return service.findAll()
     }

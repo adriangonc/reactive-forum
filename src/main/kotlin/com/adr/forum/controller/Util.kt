@@ -17,7 +17,8 @@ class Util {
         author = User(
             id = 1L,
             name = "Adriano",
-            email = "adriangonc@yahoo.com.br"
+            email = "adriangonc@yahoo.com.br",
+            password = "teste123"
         )
     )
 }
