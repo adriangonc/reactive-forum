@@ -74,7 +74,6 @@ class TopicService(
 
     fun createTopicsForTest(qtd: Long) {
 
-        var topics: List<NewTopicForm> = ArrayList()
         for (i in 1..qtd){
             var newTopicForm = NewTopicForm("Title-${i}", "Mensage-${i}",
                 -1L, 1L)

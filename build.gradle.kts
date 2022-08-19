@@ -37,6 +37,10 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
 
+	testImplementation(kotlin("test"))
+	testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine")
+	testImplementation(group = "io.mockk", name = "mockk", version = "1.10.2")
+	testRuntimeOnly(group = "org.junit.jupiter", name = "junit-jupiter-engine")
 }
 
 tasks.withType<KotlinCompile> {

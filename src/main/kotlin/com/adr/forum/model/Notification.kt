@@ -13,7 +13,8 @@ data class Notification (
     val notificationBody: String,
     val notificationSource: String,
     val idPayment: String,
-    val statusPayment: String
+    val statusPayment: String,
+    val userEmail: String
 ) {
     companion object {
         private const val prefix = "NOTIFICATION_"

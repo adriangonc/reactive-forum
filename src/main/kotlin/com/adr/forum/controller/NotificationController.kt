@@ -11,13 +11,13 @@ class NotificationController(private val service: NotificationService) {
 
     @PostMapping
     @Transactional
-    fun receiveNotification(@RequestBody payload: Map<String, Object>){
+    fun receiveNotification(@RequestBody payload: Map<String, Any>){
         service.save(payload)
     }
 
     @GetMapping
     fun notifications(): MutableList<Notification> {
-        return service.findyAll()
+        return service.findAll()
     }
 
     @GetMapping("/payment/{id}")
