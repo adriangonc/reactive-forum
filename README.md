@@ -6,8 +6,9 @@
 # Stack
 - Kotlin
 - Spring WebFlux
-- Kafka
-- MongoDB
+- JPA
+- Cache
+- Spring security
 
 # Swagger
 http://localhost:8080/webjars/swagger-ui/index.html#/

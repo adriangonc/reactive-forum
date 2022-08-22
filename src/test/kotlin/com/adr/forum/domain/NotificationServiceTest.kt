@@ -1,8 +1,8 @@
 package com.adr.forum.domain
 
-import com.adr.forum.createEmptyJsonNotification
-import com.adr.forum.createJsonNotification
-import com.adr.forum.createNotification
+import com.adr.forum.util.createEmptyJsonNotification
+import com.adr.forum.util.createJsonNotification
+import com.adr.forum.util.createNotification
 
 import com.adr.forum.repository.NotificationRepository
 import com.adr.forum.service.NotificationService
@@ -10,7 +10,9 @@ import com.adr.forum.service.NotificationService
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.springframework.test.context.ActiveProfiles
 
+@ActiveProfiles("dev")
 internal class NotificationServiceTest {
     private val notificationRepository = mockk<NotificationRepository>()
     private val notificationService = NotificationService(notificationRepository)

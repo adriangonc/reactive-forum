@@ -35,6 +35,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
 	implementation("org.springframework.boot:spring-boot-starter-security:2.7.3")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+	implementation("io.jsonwebtoken:jjwt:0.9.0")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
