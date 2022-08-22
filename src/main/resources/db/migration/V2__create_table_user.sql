@@ -6,4 +6,4 @@ create table TB_USER(
     primary key(id)
 );
 
-insert into TB_USER values(1, 'Adriano', 'adriano@tete.com', '$2a$12$mUNgqd2Slq/0wv7GtLMTxOHGHu.qyOArm6DEPi4Q/F13h61xT6A1e')
+insert into TB_USER values(-1, 'Adriano', 'adriano@tete.com', '$2a$12$mUNgqd2Slq/0wv7GtLMTxOHGHu.qyOArm6DEPi4Q/F13h61xT6A1e')
