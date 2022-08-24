@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
@@ -27,8 +28,8 @@ class JWTLoginFilter(private val authManager: AuthenticationManager,
         chain: FilterChain?,
         authResult: Authentication?
     ) {
-        val username = (authResult?.principal as UserDetail).username
-        val token = jwtUtil.generateToken(username)
+        val user = (authResult?.principal as UserDetails)
+        val token = jwtUtil.generateToken(user.username, user.authorities)
         response?.addHeader("Authorization", "Bearer $token")
     }
 }
