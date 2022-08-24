@@ -13,6 +13,6 @@ spring:
     hibernate: ddl-auto=create
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   profiles:
-    active: default
+    active: dev
 jwt:
   secret: EsegredinhoHem

@@ -1,8 +1,7 @@
-package com.adr.forum
+package com.adr.forum.util
 
 import com.adr.forum.model.Notification
 import io.mockk.InternalPlatformDsl.toStr
-import org.json.JSONObject
 import java.time.LocalDateTime
 import java.util.*
 
@@ -10,7 +9,11 @@ fun createNotification(): Notification {
     return Notification(
         id = UUID.randomUUID().toStr(),
         creationDate = LocalDateTime.now(),
-        idPayment = idPayment, notificationBody = notificationMap.toString(), notificationSource = "Test", statusPayment = "PAID"
+        idPayment = idPayment,
+        notificationBody = notificationMap.toString(),
+        notificationSource = "Test",
+        statusPayment = "PAID",
+        userEmail = "teste@teste.com"
     )
 }
 
