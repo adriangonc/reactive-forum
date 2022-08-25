@@ -12,3 +12,7 @@
 
 # Swagger
 http://localhost:8080/webjars/swagger-ui/index.html#/
+
+# Dockerfile
+- Construir: "docker build -t forum -f Dockerfile ."
+- Executar: "docker run -p 3080:8080 forum"
