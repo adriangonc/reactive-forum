@@ -61,4 +61,25 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+tasks.register("bootRunDev") {
+	group = "application"
+	description = "Runs the Spring Boot application with the dev profile"
+	doFirst {
+		tasks.bootRun.configure {
+			systemProperty("spring.profiles.active", "dev")
+		}
+	}
+	finalizedBy("bootRun")
+}
+
+tasks.register("bootRunProd") {
+	group = "application"
+	description = "Runs the Spring Boot application with the prod profile"
+	doFirst {
+		tasks.bootRun.configure {
+			systemProperty("spring.profiles.active", "prod")
+		}
+	}
+	finalizedBy("bootRun")
+}
 

@@ -9,6 +9,24 @@
 - JPA
 - Cache
 - Spring security
+- Docker
 
 # Swagger
 http://localhost:8080/webjars/swagger-ui/index.html#/
+
+# Dockerfile
+- Construir: "docker build -t forum -f Dockerfile ."
+- Executar: "docker run -p 3080:8080 forum"
+
+# Deploy Heroku
+###Criar app: 
+heroku create
+###Add app git: 
+heroku git:remote -a <appName> ex: 'vast-plains-39497'
+
+###Login heroku register: 
+heroku container:login
+###Push container 'deve ser executado no diretório do dockerfile': 
+heroku container:push web
+###Release 
+heroku container:release web
