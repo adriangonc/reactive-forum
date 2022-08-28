@@ -19,14 +19,14 @@ http://localhost:8080/webjars/swagger-ui/index.html#/
 - Executar: "docker run -p 3080:8080 forum"
 
 # Deploy Heroku
-###Criar app: 
+### Criar app: 
 heroku create
-###Add app git: 
+### Add app git: 
 heroku git:remote -a <appName> ex: 'vast-plains-39497'
 
-###Login heroku register: 
+### Login heroku register: 
 heroku container:login
-###Push container 'deve ser executado no diretório do dockerfile': 
+### Push container 'deve ser executado no diretorio do dockerfile': 
 heroku container:push web
-###Release 
+### Release 
 heroku container:release web
