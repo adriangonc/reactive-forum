@@ -28,6 +28,7 @@ class SecurityConfiguration(private val userDetailsService: UserDetailsService,
         antMatchers("/topics")?.hasAuthority("READ_AND_WRITE")?.
         antMatchers(HttpMethod.POST,"/login")?.permitAll()?.
         antMatchers(HttpMethod.POST,"/notification")?.permitAll()?.
+        antMatchers(HttpMethod.GET,"/notification/list")?.permitAll()?.
         anyRequest()?.
         authenticated()?.
         and()
